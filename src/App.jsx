@@ -28,7 +28,7 @@ function App() {
         const json = await resp.json();
         console.log(json);
 
-        // Initialize file path
+        // [TODO] Initialize file path
         setFilePath('need to initialize the path');
 
     } catch (error) {
@@ -40,7 +40,7 @@ function App() {
 
   return (
     <>
-    {/* This is test to check API */}
+    {/* This is temporary UI to check API */}
       <div>
         <button onClick={getPredict}>Get</button>
         <button onClick={postPredict}>Post</button>

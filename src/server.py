@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 import os
 from datetime import datetime
 
-
 load_dotenv()
 
 mongo_uri = os.getenv("MONGO_URI")
@@ -44,7 +43,6 @@ def extract_prediction():
 
     # Send it to MongoDB
     if prediction is not None:
-        # Connect & save to DB with error handling
         try:
             collection = db["predictions"]
             collection.insert_one(prediction_list)
@@ -57,7 +55,6 @@ def extract_prediction():
 
 
 # Get all predictions from MongoDB
-# Get all predictions from MongoDB
 @app.route("/predictions", methods=['GET'])
 def get_predictionss():
     try:
@@ -66,7 +63,7 @@ def get_predictionss():
 
         # Convert ObjectId to str for JSON serialization
         for predict in predictions:
-            predict['_id'] = str(predict['_id'])  # Convert ObjectId to string
+            predict['_id'] = str(predict['_id']) 
             formatted_date = datetime.strptime(predict['sendtime'], '%m%d%Y').strftime('%b %d, %Y')
             predict['sendtime'] = formatted_date
 
