@@ -6,7 +6,8 @@ function App() {
   const [filePath, setFilePath] = useState('testfile.mp4');
 
   async function getPredict() {
-    let resp = await fetch('http://127.0.0.1:5000/predictions')
+    // let resp = await fetch('http://127.0.0.1:5000/predictions')
+    let resp = await fetch('http://localhost:5000/predictions')
     const json = await resp.json()
     console.log(json);
   }
@@ -17,7 +18,7 @@ function App() {
     }
 
     try {
-        let resp = await fetch(`http://127.0.0.1:5000/prediction/new`, {
+        let resp = await fetch(`http://localhost:5000/prediction/new`, {
             method: 'POST',
             mode: 'cors', 
             headers: {

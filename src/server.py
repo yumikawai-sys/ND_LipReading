@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
 from datetime import datetime
+from app.pred import sample_prediction
 
 load_dotenv()
 
@@ -11,7 +12,8 @@ mongo_uri = os.getenv("MONGO_URI")
 mongo_dbname = 'lipreading_predictions'
 
 app = Flask(__name__)
-CORS(app)
+# CORS(app) * still seeing CORS
+CORS(app, origins='http://localhost:5173')
 
 # Connect to MongoDB using MongoClient
 client = MongoClient(mongo_uri)
@@ -22,9 +24,12 @@ db = client[mongo_dbname]
 def predict_speech(video_path):
     if video_path is None:
         return
+    
     # test data
-    result = "How are you?"
+    # result = "How are you?"
 
+    result = sample_prediction()
+    print('result', result)
     return(result)
 
 # Post the prediction to MongoDB
